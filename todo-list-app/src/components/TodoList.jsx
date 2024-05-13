@@ -1,14 +1,19 @@
 import React from "react";
 
-const TodoList = ({todos, setTodos}) => {
+const TodoList = ({todos, setTodos, setEdit}) => {
 
-    const handleComplete = (todo) => {
+    const handleComplete = ({id}) => {
         setTodos(
-            todos.map((item) => {
-                return item.id === todo.id ? {...item, completed: !item.completed} : item;
+            todos.map((todo) => {
+                return todo.id === id ? {...todo, completed: !todo.completed} : todo;
             })
         )
     };
+
+    const handleEdit = ({id}) => {
+        const findTodo = todos.find((todo) => todo.id === id);
+        setEdit(findTodo);
+    }
 
     const handleDelete = ({id}) => {
         setTodos(todos.filter( todo => todo.id !== id));
@@ -20,7 +25,7 @@ const TodoList = ({todos, setTodos}) => {
                 <li className="list" key={todo.id}>
                     <input type="text"
                      value={todo.title}
-                     className="row"
+                     className={`task${todo.completed ? "-complete" : ""}`}
                      onChange={(event) => event.preventDefault()} />
                     <div>
                         <button
@@ -30,7 +35,9 @@ const TodoList = ({todos, setTodos}) => {
                                 check_circle
                             </span>
                         </button>
-                        <button className="button-edit task-button">
+                        <button
+                         className="button-edit task-button"
+                         onClick={() => handleEdit(todo)}>
                             <span className="material-symbols-outlined">
                                 edit_square
                             </span>
