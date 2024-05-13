@@ -1,0 +1,156 @@
+$gradient: linear-gradient( 135deg, #FFF886 10%, #F072B6 100%);
+$wrapperColor: #303040;
+$fontColor: rgb(245, 230, 200);
+$shadow: 0 .625rem 2.4375rem .625rem rgba(85, 95, 95, 0.3);
+$fontStyle: "Maven Pro", sans-serif;
+$borderColor: #fff886;
+
+@mixin margin-radius-style($bottom: 0.625rem, $radius: 0.625rem) {
+    margin-bottom: $bottom;
+    border-radius: $radius;
+}
+
+@mixin border-outline-none($border: none, $outline: none) {
+    border: $border;
+    outline: $outline;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background: $gradient;
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+
+    .app-wrapper {
+        background-color: $wrapperColor;
+        min-width: 28rem;
+        min-height: 40rem;
+        padding: 2rem;
+        box-shadow: $shadow;
+        @include margin-radius-style(0.625rem, 1rem);
+
+        .header {
+            color: $fontColor;
+            font-size: 1.8rem;
+            font-family: $fontStyle;
+            font-weight: 100;
+            @include margin-radius-style(0.8rem, 0);
+        }
+
+        section{
+            form {
+                display: grid;
+                grid-template-columns: 1fr 3.5rem;
+
+                .task-input {
+                    outline: none;
+                    padding: 0.625rem 0.3125rem;
+                    font-size: 1.25rem;
+                    margin-right: 0.5rem;
+                    background-color: #000;
+                    color: #ccc;
+                    border: 0.0625rem solid $borderColor;
+                    @include margin-radius-style(0, 0.5rem);
+                }
+
+                .add-button {
+                    @include margin-radius-style(0, 0.625rem);
+                    font-size: 1rem;
+                    background-color: $fontColor;
+                    border: 0;
+                    box-shadow: $shadow;
+                    cursor: pointer;
+
+                    &:hover {
+                        scale: (1.02);
+                    }
+
+                    &:active {
+                        scale: (0.98);
+                    }
+                }
+            }
+        }
+
+        article {
+            ul {
+                list-style: none;
+                margin-top: 1.5rem;
+
+                .list {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    width: 100%;
+                    max-height: 1.875rem;
+                    padding: 0.5rem 0.3125rem;
+                    justify-content: space-between;
+                    align-items: center;
+                    border: 0.0625rem solid #ab8525;
+                    @include margin-radius-style(0.525rem, 0.5rem);
+
+                    .task,
+                    .task-complete {
+                        height: 100%;
+                        width: 73%;
+                        background: transparent;
+                        font-size: 1rem;
+                        @include border-outline-none(none, none);
+                        color: $fontColor;
+                    }
+
+                    .task-complete {
+                        text-decoration: line-through tomato .125rem;
+                    }
+
+                    div {
+                        width: 27%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .task-button {
+                            background: transparent;
+                            cursor: pointer;
+                            @include border-outline-none(none, none);
+                            
+                            &:hover {
+                                scale: (1.03);
+                            }
+
+                            &:active {
+                                opacity: 0.8;
+                                scale: (0.97);
+                            }
+
+                            span {
+                                font-size: 1.6rem;
+                                text-align: center;
+                                display: block;
+                            }
+                        }
+
+                        .button-complete {
+                            color: #d1f5a0;
+                        }
+
+                        .button-edit {
+                            color: lightblue;
+                        }
+
+                        .button-delete {
+                            color: rgb(237, 129, 110);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

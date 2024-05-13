@@ -6,11 +6,13 @@ import './App.css'
 
 const App = () => {
 
+  /* initiate the localStorage and three useState hooks (input, todos and edit-todos) */
   const initialTodos = JSON.parse(localStorage.getItem("todos")) || [];
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState(initialTodos);
   const [edit, setEdit] = useState(null);
   
+  /* update the localStorage while rendering or re-rendering */
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -18,7 +20,7 @@ const App = () => {
   return (
     <main className="container">
       <section className="app-wrapper">
-        <nav>
+        <nav className="header">
           <Header />
         </nav>
         <section>
