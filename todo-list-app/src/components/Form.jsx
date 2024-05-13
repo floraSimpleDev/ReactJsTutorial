@@ -4,7 +4,7 @@ import {v4 as uuidv4} from "uuid";
 const Form = ({input, setInput, todos, setTodos, edit, setEdit}) => {
 
     const inputChange = (event) => {
-        setInput(event.target.value);0
+        setInput(event.target.value);
     };
 
     const updateTodo = (title, editTodo) => {
@@ -38,6 +38,7 @@ const Form = ({input, setInput, todos, setTodos, edit, setEdit}) => {
             <input
              type="text"
              placeholder="Input a task..."
+             name="task-input"
              className="task-input"
              value={input} required
              onChange={inputChange}
