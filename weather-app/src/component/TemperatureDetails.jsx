@@ -29,25 +29,25 @@ const TemperatureDetails = () => {
     {
       id: 1,
       Icon: GiSunrise,
-      title: "Sunrise",
+      title: "sunrise",
       value: "05:33 AM",
     },
     {
       id: 2,
       Icon: GiSunset,
-      title: "Sunset",
+      title: "sunset",
       value: "08:33 PM",
     },
     {
       id: 3,
       Icon: MdKeyboardArrowUp,
-      title: "High",
+      title: "high",
       value: "37°",
     },
     {
       id: 4,
       Icon: MdKeyboardArrowDown,
-      title: "Low",
+      title: "low",
       value: "18°",
     },
   ];
@@ -62,7 +62,7 @@ const TemperatureDetails = () => {
         <menu className="flex flex-col items-start justify-stretch gap-2">
           {details.map(({ id, Icon, title, value }) => (
             <li
-              className="flex justify-center items-center whitespace-normal"
+              className="capitalize flex justify-center items-center whitespace-normal"
               key={id}
             >
               <Icon size={18} />
@@ -74,7 +74,7 @@ const TemperatureDetails = () => {
       </div>
       <menu className="flex items-center justify-center py-3 space-x-4 text-sm">
         {ranges.map(({ id, Icon, title, value }) => (
-          <li key={id} className="flex items-center">
+          <li key={id} className="capitalize flex items-center">
             <Icon size={26} />
             <p className="font-light ml-1">
               {`${title}:`}&nbsp;
