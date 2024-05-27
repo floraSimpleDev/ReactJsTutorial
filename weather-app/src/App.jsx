@@ -3,11 +3,18 @@ import Header from "./component/Header";
 import TimeAndLocation from "./component/TimeAndLocation";
 import TemperatureDetails from "./component/TemperatureDetails";
 import Forecast from "./component/Forecast";
+import weatherData from "./services/weatherForecastService";
 
 import "./App.css";
 
 function App() {
   const [input, setInput] = useState("");
+
+  const getWeather = async () => {
+    const data = await weatherData({ q: "sydney" });
+    console.log(data);
+  };
+  getWeather();
 
   return (
     <div className="w-full h-screen text-white px-8">
