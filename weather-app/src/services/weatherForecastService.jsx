@@ -111,7 +111,17 @@ const filterForecast = (seconds, offset, dataList) => {
       date: data.dt_txt,
     }));
 
-  return { hourly };
+  //daily forecast
+  const daily = dataList
+    .filter((data) => data.dt_txt.slice(-8) === "00:00:00")
+    .map((data) => ({
+      temp: data.main.temp,
+      title: toLocalTime(data.dt, offset, "ccc"),
+      image: iconName(data.weather[0].main)[0].img,
+      date: data.dt_txt,
+    }));
+
+  return { hourly, daily };
 };
 
 const weatherData = async (searchParams) => {

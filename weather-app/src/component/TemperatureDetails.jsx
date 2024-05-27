@@ -53,13 +53,13 @@ const TemperatureDetails = () => {
   ];
   return (
     <div>
-      <div className="flex items-center justify-around py-6">
+      <div className="flex items-center justify-around py-3">
         <figure>
           <img src={rainy} alt="rainy icon" className="w-20" />
           <figcaption className="text-center text-xs mt-2">Rainy</figcaption>
         </figure>
         <p className="text-7xl">34°</p>
-        <menu className="flex flex-col items-start justify-stretch gap-2">
+        <menu className="flex flex-col items-start justify-stretch gap-2 text-xs">
           {details.map(({ id, Icon, title, value }) => (
             <li
               className="capitalize flex justify-center items-center whitespace-normal"
@@ -72,7 +72,7 @@ const TemperatureDetails = () => {
           ))}
         </menu>
       </div>
-      <menu className="flex items-center justify-center py-3 space-x-4 text-sm">
+      <menu className="flex items-center justify-center py-2 space-x-4 text-xs">
         {ranges.map(({ id, Icon, title, value }) => (
           <li key={id} className="capitalize flex items-center">
             <Icon size={26} />
