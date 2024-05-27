@@ -60,7 +60,7 @@ const iconName = (details) => {
   return weatherTypes.filter((weather) => weather.type === details);
 };
 
-//set up standard data format
+//set up standard weather data format
 const filterData = (data) => {
   const {
     coord: { lon, lat },
@@ -78,6 +78,8 @@ const filterData = (data) => {
   const { type, img: image } = iconName(details)[0];
 
   return {
+    lon,
+    lat,
     temp,
     feels_like,
     temp_min,
@@ -91,13 +93,48 @@ const filterData = (data) => {
     type,
     image,
     localTime,
+    dt,
+    timezone,
   };
 };
 
-const weatherData = async (searchParams) => {
-  const filtered = await fetchWeather("weather", searchParams).then(filterData);
+//format the forecast weather data
+const filterForecast = (seconds, offset, dataList) => {
+  //hourly forecast
+  const hourly = dataList
+    .filter((data) => data.dt > seconds)
+    .slice(0, 5)
+    .map((data) => ({
+      temp: data.main.temp,
+      title: toLocalTime(data.dt, offset, "hh:mm a"),
+      image: iconName(data.weather[0].main)[0].img,
+      date: data.dt_txt,
+    }));
 
-  return { ...filtered };
+  return { hourly };
+};
+
+const weatherData = async (searchParams) => {
+  const filtered = await fetchWeather("weather", searchParams)
+    .then(filterData)
+    .catch((error) => {
+      console.log(error);
+    });
+
+  const { lon, lat, dt, timezone } = filtered;
+
+  //forecast future weather
+  const forecastWeather = await fetchWeather("forecast", {
+    lon,
+    lat,
+    units: searchParams.units,
+  })
+    .then((data) => filterForecast(dt, timezone, data.list))
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return { ...filtered, ...forecastWeather };
 };
 
 export default weatherData;
