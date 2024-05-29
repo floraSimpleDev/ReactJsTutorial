@@ -17,7 +17,21 @@ const Header = ({ setQuery, setUnits }) => {
     if (event.key === "Enter") setQuery({ q: city });
   };
 
-  const locateOnClick = () => {};
+  const successCallback = (position) => {
+    //console.log(position);
+    const { latitude, longitude } = position.coords;
+    setQuery({ lat: latitude, lon: longitude });
+  };
+
+  const errorCallback = (error) => {
+    console.log(error);
+  };
+
+  const locateOnClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    }
+  };
 
   return (
     <nav className="w-full p-3 flex justify-between items-center flex-wrap">
@@ -48,11 +62,17 @@ const Header = ({ setQuery, setUnits }) => {
         />
 
         <div className="flex flex-row w-1/4 items-center justify-center">
-          <button className="text-2xl font-medium transition ease-out hover:scale-125">
+          <button
+            className="text-2xl font-medium transition ease-out hover:scale-125"
+            onClick={() => setUnits("metric")}
+          >
             °C
           </button>
           <p className="text-2xl font-medium mx-1">|</p>
-          <button className="text-2xl font-medium transition ease-out hover:scale-125">
+          <button
+            className="text-2xl font-medium transition ease-out hover:scale-125"
+            onClick={() => setUnits("imperial")}
+          >
             °F
           </button>
         </div>

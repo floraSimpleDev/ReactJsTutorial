@@ -32,6 +32,7 @@ const TemperatureDetails = ({
     humidity,
     feels_like,
   },
+  units,
 }) => {
   const situations = [
     {
@@ -49,7 +50,7 @@ const TemperatureDetails = ({
     {
       id: 3,
       Icon: FiWind,
-      value: `${speed.toFixed()}km/h`,
+      value: `${speed.toFixed()} ${units === "metric" ? "km/h" : "m/s"}`,
     },
   ];
   const ranges = [
@@ -96,7 +97,7 @@ const TemperatureDetails = ({
             >
               <Icon size={18} />
               {`${title}:`}&nbsp;
-              <span className="font-medium">{value}</span>
+              <span className="font-medium lowercase">{value}</span>
             </li>
           ))}
         </menu>
