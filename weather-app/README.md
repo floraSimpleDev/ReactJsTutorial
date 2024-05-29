@@ -11,3 +11,12 @@ Currently, two official plugins are available:
 ```
 npm run dev
 ```
+
+## Functionality
+```
+1 dynamic background layout
+2 dynamic parameters upgrading
+3 search by manul input or "Enter" key press and locate real position
+4 switch °C mode and °F mode
+5 5-day forecast
+6 3-hour forecast
