@@ -15,7 +15,13 @@
 @layer base {
   html {
     font-family: "Ubuntu Sans", sans-serif;
-    background-image: url("./assets/images/home.jpg");
+    /* background-image: url("./assets/images/home.jpg"); */
+    /* background-image: linear-gradient(
+      to top,
+      #fad0c4 0%,
+      #fad0c4 1%,
+      #ffd1ff 100%
+    ); */
     background-size: cover;
   }
 }
