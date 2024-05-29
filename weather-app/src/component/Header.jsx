@@ -1,5 +1,4 @@
 import { useState } from "react";
-import search from "../assets/icons/search.svg";
 import { IoMdLocate } from "react-icons/io";
 import { BiSearch } from "react-icons/bi";
 
