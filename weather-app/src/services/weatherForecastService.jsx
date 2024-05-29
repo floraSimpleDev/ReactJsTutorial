@@ -1,14 +1,14 @@
 import { DateTime } from "luxon";
-import Ash from "../assets/icons/Ash.png";
+import Ash from "../assets/icons/Ash.svg";
 import Clear from "../assets/icons/Clear.png";
 import Clouds from "../assets/icons/Clouds.png";
 import Drizzle from "../assets/icons/Drizzle.png";
-import Dust from "../assets/icons/Dust.png";
+import Dust from "../assets/icons/Dust.svg";
 import Fog from "../assets/icons/Fog.png";
-import Haze from "../assets/icons/Haze.png";
+import Haze from "../assets/icons/Haze.svg";
 import Mist from "../assets/icons/Mist.png";
 import Rain from "../assets/icons/Rain.png";
-import Sand from "../assets/icons/Sand.png";
+import Sand from "../assets/icons/Sand.svg";
 import Smoke from "../assets/icons/Smoke.png";
 import Snow from "../assets/icons/Snow.png";
 import Squall from "../assets/icons/Squall.png";
@@ -89,6 +89,7 @@ const filterData = (data) => {
     country,
     sunrise: toLocalTime(sunrise, timezone, "hh:mm a"),
     sunset: toLocalTime(sunset, timezone, "hh:mm a"),
+    speed,
     details,
     type,
     image,
