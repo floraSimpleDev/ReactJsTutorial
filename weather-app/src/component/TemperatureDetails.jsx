@@ -3,26 +3,53 @@ import { BiSolidDropletHalf } from "react-icons/bi";
 import { FiWind } from "react-icons/fi";
 import { GiSunrise, GiSunset } from "react-icons/gi";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
-import rainy from "../assets/icons/rainy.png";
+import Ash from "../assets/icons/Ash.svg";
+import Clear from "../assets/icons/Clear.png";
+import Clouds from "../assets/icons/Clouds.png";
+import Drizzle from "../assets/icons/Drizzle.png";
+import Dust from "../assets/icons/Dust.svg";
+import Fog from "../assets/icons/Fog.png";
+import Haze from "../assets/icons/Haze.svg";
+import Mist from "../assets/icons/Mist.png";
+import Rain from "../assets/icons/Rain.png";
+import Sand from "../assets/icons/Sand.svg";
+import Smoke from "../assets/icons/Smoke.png";
+import Snow from "../assets/icons/Snow.png";
+import Squall from "../assets/icons/Squall.png";
+import Thunderstorm from "../assets/icons/Thunderstorm.png";
+import Tornado from "../assets/icons/Tornado.png";
 
-const TemperatureDetails = () => {
-  const details = [
+const TemperatureDetails = ({
+  weather: {
+    details,
+    image,
+    temp,
+    temp_min,
+    temp_max,
+    sunrise,
+    sunset,
+    speed,
+    humidity,
+    feels_like,
+  },
+}) => {
+  const situations = [
     {
       id: 1,
       Icon: FaThermometerEmpty,
       title: "real feel",
-      value: "22°",
+      value: `${feels_like.toFixed()}°`,
     },
     {
       id: 2,
       Icon: BiSolidDropletHalf,
       title: "humidity",
-      value: "346%",
+      value: `${humidity.toFixed()}%`,
     },
     {
       id: 3,
       Icon: FiWind,
-      value: "11 km/h",
+      value: `${speed.toFixed()}km/h`,
     },
   ];
   const ranges = [
@@ -30,37 +57,39 @@ const TemperatureDetails = () => {
       id: 1,
       Icon: GiSunrise,
       title: "sunrise",
-      value: "05:33 AM",
+      value: sunrise,
     },
     {
       id: 2,
       Icon: GiSunset,
       title: "sunset",
-      value: "08:33 PM",
+      value: sunset,
     },
     {
       id: 3,
       Icon: MdKeyboardArrowUp,
       title: "high",
-      value: "37°",
+      value: `${temp_max.toFixed()}°`,
     },
     {
       id: 4,
       Icon: MdKeyboardArrowDown,
       title: "low",
-      value: "18°",
+      value: `${temp_min.toFixed()}°`,
     },
   ];
   return (
     <div>
       <div className="flex items-center justify-around py-3">
         <figure>
-          <img src={rainy} alt="rainy icon" className="w-20" />
-          <figcaption className="text-center text-xs mt-2">Rainy</figcaption>
+          <img src={image} alt="rainy icon" className="w-20 bg-none" />
+          <figcaption className="text-center text-xs mt-2">
+            {details}
+          </figcaption>
         </figure>
-        <p className="text-7xl">34°</p>
+        <p className="text-7xl">{`${temp.toFixed()}°`}</p>
         <menu className="flex flex-col items-start justify-stretch gap-2 text-xs">
-          {details.map(({ id, Icon, title, value }) => (
+          {situations.map(({ id, Icon, title, value }) => (
             <li
               className="capitalize flex justify-center items-center whitespace-normal"
               key={id}
