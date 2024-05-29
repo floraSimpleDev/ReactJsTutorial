@@ -2,14 +2,22 @@ import { useState } from "react";
 import { IoMdLocate } from "react-icons/io";
 import { BiSearch } from "react-icons/bi";
 
-const Header = ({ input, setInput }) => {
+const Header = ({ setQuery, setUnits }) => {
+  const [city, setCity] = useState("");
+
   const inputChange = (event) => {
-    setInput(event.target.value);
+    setCity(event.target.value);
   };
 
-  const keyUpChange = (event) => {
-    if (event.key === "Enter") console.log("submit city");
+  const searchOnClick = () => {
+    if (city) setQuery({ q: city });
   };
+
+  const searchOnKeyUp = (event) => {
+    if (event.key === "Enter") setQuery({ q: city });
+  };
+
+  const locateOnClick = () => {};
 
   return (
     <nav className="w-full p-3 flex justify-between items-center flex-wrap">
@@ -22,19 +30,21 @@ const Header = ({ input, setInput }) => {
             type="text"
             placeholder="search city"
             className="focus:outline-none w-full text-[#212121] text-lg"
-            value={input}
+            value={city}
             onChange={inputChange}
-            onKeyUp={keyUpChange /* submitCity() */}
+            onKeyUp={searchOnKeyUp}
           />
         </div>
         <BiSearch
           size={30}
           className="hover:scale-125 cursor-pointer transition ease-out"
+          onClick={searchOnClick}
         />
 
         <IoMdLocate
           size={30}
           className="cursor-pointer transition ease-out hover:scale-125"
+          onClick={locateOnClick}
         />
 
         <div className="flex flex-row w-1/4 items-center justify-center">
